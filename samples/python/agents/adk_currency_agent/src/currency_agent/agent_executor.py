@@ -74,10 +74,21 @@ class CurrencyAgentExecutor(AgentExecutor):
                 if response_trace:
                     self._process_trace_events(event, response_trace)
 
-                if event.is_final_response():
-                    await self._process_final_response(
-                        event, updater, response_trace, task
-                    )
+if event.is_final_response():
+    if not (
+        event.content
+        and event.content.parts
+        and event.content.parts[0].text
+    ):
+        logger.info(
+            "Ignoring final response event without text content"
+        )
+        continue
+
+    await self._process_final_response(
+        event, updater, response_trace, task
+    )
+    return
 
         except Exception:
             logger.exception('Error during agent execution')
