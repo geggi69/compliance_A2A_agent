@@ -58,7 +58,7 @@ Click on the task list to see all the A2A task updates from the remote agents
    ```bash
    echo "GOOGLE_GENAI_USE_VERTEXAI=TRUE" >> .env
    echo "GOOGLE_CLOUD_PROJECT=your_project_id" >> .env
-   echo "GOOGLE_CLOUD_LOCATION=your_location" >> .env
+   echo "GOOGLE_CLOUD_LOCATION=global" >> .env
    ```
 
    Note: Ensure you've authenticated with gcloud using `gcloud auth login` first.
